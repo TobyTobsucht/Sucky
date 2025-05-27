@@ -1,0 +1,81 @@
+---
+name: sucky
+
+services:
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - VERSION=docker
+    volumes:
+      - /home/goeran/docker/sucky/plex:/config
+      - /media/hdd1/data/media:/data/media
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    ports:
+      - "7878:7878"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - /home/goeran/docker/sucky/radarr:/config
+      - /media/hdd1/data:/data
+    restart: unless-stopped
+
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    ports:
+      - "8989:8989"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - /home/goeran/docker/sucky/sonarr:/config
+      - /media/hdd1/data:/data
+    restart: unless-stopped
+
+  sabnzbd:
+    image: linuxserver/sabnzbd
+    container_name: sabnzbd
+    ports:
+      - "8080:8080"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - /home/goeran/docker/sucky/sabnzbd:/config
+      - /media/hdd1/data/usenet:/data/usenet
+    restart: unless-stopped
+
+  overseerr:
+    image: linuxserver/overseerr
+    container_name: overseerr
+    ports:
+      - "5055:5055"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - /home/goeran/docker/sucky/overseerr:/config
+    restart: unless-stopped
+
+  recyclarr:
+    container_name: recyclarr
+    image: recyclarr/recyclarr:7
+    user: 1000:1000
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - /home/goeran/docker/sucky/recyclarr:/config
