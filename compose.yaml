@@ -12,7 +12,7 @@ services:
       - TZ=Europe/Berlin
       - VERSION=docker
     volumes:
-      - /home/goeran/docker/sucky/plex:/config
+      - /home/USERNAME/docker/sucky/plex:/config
       - /media/hdd1/data/media:/data/media
     restart: unless-stopped
 
@@ -26,7 +26,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /home/goeran/docker/sucky/radarr:/config
+      - /home/USERNAME/docker/sucky/radarr:/config
       - /media/hdd1/data:/data
     restart: unless-stopped
 
@@ -40,7 +40,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /home/goeran/docker/sucky/sonarr:/config
+      - /home/USERNAME/docker/sucky/sonarr:/config
       - /media/hdd1/data:/data
     restart: unless-stopped
 
@@ -54,7 +54,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /home/goeran/docker/sucky/sabnzbd:/config
+      - /home/USERNAME/docker/sucky/sabnzbd:/config
       - /media/hdd1/data/usenet:/data/usenet
     restart: unless-stopped
 
@@ -68,7 +68,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /home/goeran/docker/sucky/overseerr:/config
+      - /home/USERNAME/docker/sucky/overseerr:/config
     restart: unless-stopped
 
   recyclarr:
@@ -78,4 +78,4 @@ services:
     environment:
       - TZ=Europe/Berlin
     volumes:
-      - /home/goeran/docker/sucky/recyclarr:/config
+      - /home/USERNAME/docker/sucky/recyclarr:/config
