@@ -89,9 +89,9 @@ sonarr:
 #          - name: UHD Bluray + WEB (GER)
 
 ### Prioritize P2P over German Scene Releases
-# Uncomment the next 4 lines to set the German Scene custom format to 0 
+# Uncomment the next 5 lines to set the German Scene custom format to 0 
 #      - trash_ids:
-#          - c2eec878fa1989599c226ce4c287d6a7 # Uncomment this line to prioritize P2P
+#          - c2eec878fa1989599c226ce4c287d6a7
 #        assign_scores_to:
 #          - name: UHD Bluray + WEB (GER)
 #            score: 0
