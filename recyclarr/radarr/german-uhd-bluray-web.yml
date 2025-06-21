@@ -9,7 +9,7 @@
 # Instance Definition: https://recyclarr.dev/wiki/yaml/config-reference/basic/
 
 radarr:
-  uhd-bluray-web-ger:
+  uhd-bluray-web-ger-radarr:
     base_url: Put your Radarr URL here
     api_key: Put your API key here
 
