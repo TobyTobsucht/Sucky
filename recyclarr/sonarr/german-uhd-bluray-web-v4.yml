@@ -9,7 +9,7 @@
 # Instance Definition: https://recyclarr.dev/wiki/yaml/config-reference/basic/
 
 sonarr:
-  uhd-bluray-web-ger:
+  uhd-bluray-web-ger-sonarr:
     base_url: Put your Sonarr URL here
     api_key: Put your API key here
 
