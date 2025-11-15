@@ -1,5 +1,4 @@
 ---
-# Den Platzhalter USERNAME durch den eigenen Benutzernamen ersetzten!
 
 name: sucky
 
@@ -14,7 +13,7 @@ services:
       - TZ=Europe/Berlin
       - VERSION=docker
     volumes:
-      - /home/USERNAME/docker/sucky/plex:/config
+      - ./plex:/config
       - /media/hdd1/data/media:/data/media
     restart: unless-stopped
 
@@ -28,7 +27,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /home/USERNAME/docker/sucky/radarr:/config
+      - ./radarr:/config
       - /media/hdd1/data:/data
     restart: unless-stopped
 
@@ -42,7 +41,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /home/USERNAME/docker/sucky/sonarr:/config
+      - ./sonarr:/config
       - /media/hdd1/data:/data
     restart: unless-stopped
 
@@ -56,7 +55,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /home/USERNAME/docker/sucky/sabnzbd:/config
+      - ./sabnzbd:/config
       - /media/hdd1/data/usenet:/data/usenet
     restart: unless-stopped
 
@@ -70,7 +69,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /home/USERNAME/docker/sucky/overseerr:/config
+      - ./overseerr:/config
     restart: unless-stopped
 
   recyclarr:
@@ -80,4 +79,4 @@ services:
     environment:
       - TZ=Europe/Berlin
     volumes:
-      - /home/USERNAME/docker/sucky/recyclarr:/config
+      - ./recyclarr:/config
