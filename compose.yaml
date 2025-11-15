@@ -80,3 +80,18 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ./recyclarr:/config
+
+  umlautadaptarr:
+    container_name: umlautadaptarr
+    image: pcjones/umlautadaptarr:latest
+    restart: unless-stopped
+    ports:
+      - "5005:5005"
+    environment:
+      - TZ=Europe/Berlin
+      - SONARR__ENABLED=true
+      - SONARR__HOST=http://192.168.178.201:8989
+      - SONARR__APIKEY=APIKEY
+      - RADARR__ENABLED=true
+      - RADARR__HOST=http://192.168.178.201:7878
+      - RADARR__APIKEY=APIKEY
