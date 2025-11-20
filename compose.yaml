@@ -59,7 +59,7 @@ services:
       - /media/hdd1/data/usenet:/data/usenet
     restart: unless-stopped
 
-  overseerr:
+  jellyseerr:
     image: fallenbagel/jellyseerr
     container_name: jellyseerr
     ports:
