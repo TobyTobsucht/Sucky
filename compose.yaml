@@ -88,8 +88,8 @@ services:
     environment:
       - TZ=Europe/Berlin
       - SONARR__ENABLED=true
-      - SONARR__HOST=http://192.168.178.201:8989
+      - SONARR__HOST=http://xxx.xxx.xxx.xxx:xxxx
       - SONARR__APIKEY=APIKEY
       - RADARR__ENABLED=true
-      - RADARR__HOST=http://192.168.178.201:7878
+      - RADARR__HOST=http://xxx.xxx.xxx.xxx:xxxx
       - RADARR__APIKEY=APIKEY
