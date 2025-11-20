@@ -60,16 +60,14 @@ services:
     restart: unless-stopped
 
   overseerr:
-    image: linuxserver/overseerr
-    container_name: overseerr
+    image: fallenbagel/jellyseerr
+    container_name: jellyseerr
     ports:
       - "5055:5055"
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ./overseerr:/config
+      - ./jellyseerr:/app/config
     restart: unless-stopped
 
   recyclarr:
