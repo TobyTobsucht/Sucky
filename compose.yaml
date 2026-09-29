@@ -4,7 +4,7 @@ name: sucky
 
 services:
   plex:
-    image: linuxserver/plex
+    image: ghcr.io/linuxserver/plex:latest
     container_name: plex
     network_mode: host
     environment:
@@ -13,40 +13,12 @@ services:
       - TZ=Europe/Berlin
       - VERSION=docker
     volumes:
-      - ./plex:/config
+      - ./plex/config:/config
       - /media/hdd1/data/media:/data/media
     restart: unless-stopped
 
-  radarr:
-    image: linuxserver/radarr
-    container_name: radarr
-    ports:
-      - "7878:7878"
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-    volumes:
-      - ./radarr:/config
-      - /media/hdd1/data:/data
-    restart: unless-stopped
-
-  sonarr:
-    image: linuxserver/sonarr
-    container_name: sonarr
-    ports:
-      - "8989:8989"
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-    volumes:
-      - ./sonarr:/config
-      - /media/hdd1/data:/data
-    restart: unless-stopped
-
   sabnzbd:
-    image: linuxserver/sabnzbd
+    image: ghcr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
     ports:
       - "8080:8080"
@@ -55,29 +27,74 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ./sabnzbd:/config
+      - ./sabnzbd/config:/config
       - /media/hdd1/data/usenet:/data/usenet
     restart: unless-stopped
 
-  jellyseerr:
-    image: fallenbagel/jellyseerr
-    container_name: jellyseerr
+  radarr:
+    image: ghcr.io/linuxserver/radarr:latest
+    container_name: radarr
     ports:
-      - "5055:5055"
+      - "7878:7878"
     environment:
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ./jellyseerr:/app/config
+      - ./radarr/config:/config
+      - /media/hdd1/data:/data
     restart: unless-stopped
 
-  recyclarr:
-    container_name: recyclarr
-    image: recyclarr/recyclarr:7
-    user: 1000:1000
+  sonarr:
+    image: ghcr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    ports:
+      - "8989:8989"
     environment:
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ./recyclarr:/config
+      - ./sonarr/config:/config
+      - /media/hdd1/data:/data
+    restart: unless-stopped
+
+  seerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    init: true
+    container_name: seerr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Europe/Berlin
+      - PORT=5055 #optional
+    ports:
+      - 5055:5055
+    volumes:
+      - ./seerr/config:/app/config
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:5055/api/v1/settings/public || exit 1
+      start_period: 20s
+      timeout: 3s
+      interval: 15s
+      retries: 3
+    security_opt:
+      - no-new-privileges
+    cap_drop:
+      - ALL
+    restart: unless-stopped
+
+  clonarr:
+    container_name: clonarr
+    image: ghcr.io/prophetse7en/clonarr:latest
+    ports:
+      - 6060:6060
+    environment:
+      - TZ=Europe/Berlin
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./clonarr/config:/config
+    restart: unless-stopped
 
   umlautadaptarr:
     container_name: umlautadaptarr
@@ -88,8 +105,8 @@ services:
     environment:
       - TZ=Europe/Berlin
       - SONARR__ENABLED=true
-      - SONARR__HOST=http://xxx.xxx.xxx.xxx:xxxx
+      - SONARR__HOST=http://sonarr
       - SONARR__APIKEY=APIKEY
       - RADARR__ENABLED=true
-      - RADARR__HOST=http://xxx.xxx.xxx.xxx:xxxx
+      - RADARR__HOST=http://radarr
       - RADARR__APIKEY=APIKEY
