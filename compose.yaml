@@ -14,7 +14,7 @@ services:
       - VERSION=docker
     volumes:
       - ./plex/config:/config
-      - /media/hdd1/data/media:/data/media
+      - /mnt/hdd1/data/media:/data/media
     restart: unless-stopped
 
   sabnzbd:
@@ -28,7 +28,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ./sabnzbd/config:/config
-      - /media/hdd1/data/usenet:/data/usenet
+      - /mnt/hdd1/data/usenet:/data/usenet
     restart: unless-stopped
 
   radarr:
@@ -42,7 +42,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ./radarr/config:/config
-      - /media/hdd1/data:/data
+      - /mnt/hdd1/data:/data
     restart: unless-stopped
 
   sonarr:
@@ -56,7 +56,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ./sonarr/config:/config
-      - /media/hdd1/data:/data
+      - /mnt/hdd1/data:/data
     restart: unless-stopped
 
   seerr:
